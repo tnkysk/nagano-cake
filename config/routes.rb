@@ -13,21 +13,21 @@ Rails.application.routes.draw do
     sessions: 'devise/admins/sessions'
   }
 
-  namespace :admin do
-    get 'top/top'
-    resources :items
-    resources :genres
-    resources :customers
-    resources :orders
-    patch 'order_details/update'
-  end
-
   namespace :public do
     resources :items
     resources :customers
     resources :cart_items
     resources :orders
     resources :addresses
+  end
+
+  namespace :admin do
+    get 'top/top'
+    resources :items
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers
+    resources :orders
+    patch 'order_details/update'
   end
 
 end
