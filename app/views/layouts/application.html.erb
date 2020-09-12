@@ -4,12 +4,57 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <div class='fixed-top'>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <div class="navbar-header">
+          <span class="navbar-text ">
+            <h4>LOGO</h4>
+          </span>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+          <% if customer_signed_in? %>
+              <li><%= link_to public_customers_path, class: "btn btn-md btn-outline-dark" do%>マイページ<% end %></li>
+
+              <li><%= link_to public_items_path, class: "btn btn-md btn-outline-dark" do%>商品一覧<% end %></li>
+
+              <li><%= link_to public_cart_items_path, class: "btn btn-md btn-outline-dark" do%>カート<% end %></li>
+
+              <li><%= link_to destroy_public_session_path, method: :delete, class: "btn btn-md btn-outline-dark" do%>ログアウト<% end %></li>
+
+          <% elsif admin_signed_in? %>
+              <li><%= link_to admin_items_path, class: "btn btn-md btn-outline-dark" do%>商品一覧<% end %></li>
+
+              <li><%= link_to admin_customers_path, class: "btn btn-md btn-outline-dark" do%>会員一覧<% end %></li>
+
+              <li><%= link_to admin_orders_path, class: "btn btn-md btn-outline-dark" do%>注文履歴一覧<% end %></li>
+
+              <li><%= link_to admin_genres_path, class: "btn btn-md btn-outline-dark" do%>ジャンル一覧<% end %></li>
+
+              <li><%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-md btn-outline-dark" do%>ログアウト<% end %></li>
+
+          <% else %>
+              <li><%= link_to public_items_path, class: "btn btn-md btn-outline-dark" do%>About<% end %></li>
+
+              <li><%= link_to public_items_path, class: "btn btn-md btn-outline-dark" do%>商品一覧<% end %></li>
+
+              <li><%= link_to new_customer_registration_path, class: "btn btn-md btn-outline-dark" do%>新規登録<% end %></li>
+
+              <li><%= link_to new_customer_session_path, class: "btn btn-md btn-outline-dark" do%>ログイン<% end %></li>
+          <% end %>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
