@@ -10,8 +10,8 @@
         <%= form_for(@genre, url: admin_genres_path, html: { class: "form-inline" }) do |f| %>
           <label for="genre">ジャンル</label>
           <%= f.text_field :name, class:"form-control" %>
-          <%= f.radio_button :is_active, true %><%= f.label :genre, "true", :value => "true"  %>
-          <%= f.radio_button :is_active, false %><%= f.label :genre, "false", :value => "false" %>
+          <%= f.radio_button :is_active, true %><%= f.label :genre, "有効", :value => "true"  %>
+          <%= f.radio_button :is_active, false %><%= f.label :genre, "無効", :value => "false" %>
           <%= f.submit "追加", class:"btn btn-primary" %>
         <% end %>
 
@@ -29,8 +29,13 @@
           <% @genres.each do |genre| %>
           <tr>
           	<th><%= genre.name %></th>
-          	<th><%= genre.is_active %></th>
-         	<th><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-primary' %></th>
+            <th><% if genre.is_active == true %>
+                  <p>有効</p>
+                <% else %>
+                  <p>無効</p>
+              	<% end %>
+            </th>
+          	<th><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-primary' %></th>
           </tr>
           <% end %>
          </tbody>
