@@ -10,4 +10,5 @@ class Admin::CustomersController < ApplicationController
 
   def update
   end
+
 end

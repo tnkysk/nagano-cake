@@ -20,22 +20,22 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-         	<th><p><b>ジャンル</b></p></th>
-         	<th><p><b>状態</b></p></th>
+         	<th>ジャンル<</th>
+         	<th>状態</th>
          	<th></th>
           </tr>
         </thead>
         <tbody>
           <% @genres.each do |genre| %>
           <tr>
-          	<th><%= genre.name %></th>
-            <th><% if genre.is_active == true %>
+          	<td><%= genre.name %></td>
+            <td><% if genre.is_active == true %>
                   <p>有効</p>
                 <% else %>
                   <p>無効</p>
               	<% end %>
-            </th>
-          	<th><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-primary' %></th>
+            </td>
+          	<td><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-primary' %></td>
           </tr>
           <% end %>
          </tbody>

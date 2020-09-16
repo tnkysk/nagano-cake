@@ -1,2 +1,46 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-8 offset-1">
+      <h4>配送先編集</h4>
+
+      <br>
+      <br>
+
+      <%= form_for(@address, url: public_address_path) do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <th>郵便番号（ハイフンなし）</th>
+          <td>
+            <div class="field">
+              <%= f.text_field :postal_code, class:"form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>
+            <div class="field">
+              <%= f.text_field :address, class:"form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td>
+            <div class="field">
+              <%= f.text_field :name, class:"form-control" %>
+            </div>
+          </td>
+          <td>
+            <%= f.submit "編集する", class:"btn btn-primary" %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>
