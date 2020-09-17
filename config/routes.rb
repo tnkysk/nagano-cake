@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :public do
+    get '/top' => "public#top"
     resources :items
     resources :cart_items
     resources :orders
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/top' => "admin#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers
